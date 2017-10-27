@@ -8,7 +8,7 @@ public:
     int nPositive;
     int nZero;
     int nNegative;
-    
+
     friend std::ostream & operator <<(std::ostream & stream, const Result & obj){
         stream << "nNegative : " << (double)obj.nNegative/10 << "%" <<  endl ;
         stream << "nZero : " << (double)obj.nZero/10 << "%" << endl;

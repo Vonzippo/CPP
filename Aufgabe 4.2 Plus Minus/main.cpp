@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <math.h>
 using namespace std;
 
 class Result {
@@ -7,6 +8,12 @@ public:
     int nPositive;
     int nZero;
     int nNegative;
+
+    friend std::ostream & operator <<(std::ostream & stream, const Result & obj){
+        stream << "nNegative : " << (double)obj.nNegative/10 << "%" <<  endl ;
+        stream << "nZero : " << (double)obj.nZero/10 << "%" << endl;
+        stream << "nPositive : " <<  (double)obj.nPositive/10 << "%" << endl;
+    }
 };
 
 class ArrayUtil{
@@ -37,38 +44,34 @@ Result ArrayUtil::analyseArray(vector<int> input){
     }
 
     double c[3];
-    //cout << input.size();
+
     for(int i =0; i < 3 ;i++) {
-        c[i] = 0;
-        c[i] = (double) ((counter[i] / input.size()) * 100.0);
-        //cout << endl << c[i] << "%";
+        c[i] = ((counter[i] / input.size()) * 1000);
     }
+
     Result obj;
-    obj.nNegative = c[0];
-    obj.nPositive = c[1];
-    obj.nZero = c[2];
+    obj.nNegative = (int)round(c[0]);
+    obj.nZero = (int)round(c[2]);
+    obj.nPositive = (int)round(c[1]);
 
     return obj;
 }
 
 int main(int argc, char** argv) {
 
-    int arra[] = {1,10,0,-6,-9,2,5};
-    vector<int> input;
 
-    for(int i =0; i< 7;i++){
-        input.push_back(arra[i]);
-        //cout << input[i] << endl;
-    }
+    vector<int> input{1,10,0,-6,-9,2,5};
 
     ArrayUtil obj;
     Result newobj;
     newobj = obj.analyseArray(input);
 
+    cout << newobj;
+/*
     cout << endl << "nNegative = " << newobj.nNegative << "%";
     cout << endl << "nPositive = " << newobj.nPositive<< "%";
     cout << endl<< "nZero = " << newobj.nPositive << "%";
     //std::cout << "Hello, World!" << std::endl;
-
+*/
     return 0;
 }
