@@ -59,7 +59,6 @@ Result ArrayUtil::analyseArray(vector<int> input){
 
 int main(int argc, char** argv) {
 
-
     vector<int> input{1,10,0,-6,-9,2,5};
 
     ArrayUtil obj;
